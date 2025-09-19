@@ -1,13 +1,11 @@
 package org.example;
 
-import java.awt.*;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
 public class Hangman {
-    String all = " ---------|\n" +
+    String tree = " ---------|\n" +
             "  |       |\n" +
             "          |\n" +
             "          |\n" +
@@ -48,7 +46,7 @@ public class Hangman {
             "/ | \\     |\n" +
             " / \\      |\n" +
             "         _|_";
-    Queue <String> play = new LinkedList<>(List.of(all, body, lHand, rHand, lLeg, rLeg));
+    Queue <String> play = new LinkedList<>(List.of(tree, head, body, lHand, rHand, lLeg, rLeg));
 
 
 }
