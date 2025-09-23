@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Queue;
 
 public class Hangman {
-    String tree = " ---------|\n" +
+    private final String tree = " ---------|\n" +
             "  |       |\n" +
             "          |\n" +
             "          |\n" +
@@ -13,40 +13,40 @@ public class Hangman {
             "         _|_";
 
 
-    String head = " ---------|\n" +
+    private final String head = " ---------|\n" +
             "  |       |\n" +
             "  O       |\n";
-    String body = " ---------|\n" +
+    private final String body = " ---------|\n" +
             "  |       |\n" +
             "  O       |\n" +
             "  |       |\n" +
             "          |\n" +
             "         _|_";
-    String lHand = " ---------|\n" +
+    private final String lHand = " ---------|\n" +
             "  |       |\n" +
             "  O       |\n" +
             "/ |       |\n" +
             "          |\n" +
             "         _|_";
-    String rHand = " ---------|\n" +
+    private final String rHand = " ---------|\n" +
             "  |       |\n" +
             "  O       |\n" +
             "/ | \\     |\n" +
             "          |\n" +
             "         _|_";
-    String lLeg = " ---------|\n" +
+    private final String lLeg = " ---------|\n" +
             "  |       |\n" +
             "  O       |\n" +
             "/ | \\     |\n" +
             " /        |\n" +
             "         _|_";
-    String rLeg = " ---------|\n" +
+    private final String rLeg = " ---------|\n" +
             "  |       |\n" +
             "  O       |\n" +
             "/ | \\     |\n" +
             " / \\      |\n" +
             "         _|_";
-    Queue <String> play = new LinkedList<>(List.of(tree, head, body, lHand, rHand, lLeg, rLeg));
-
-
+    Queue <String> initialize() {
+        return new LinkedList<String>(List.of(tree, head, body, lHand, rHand, lLeg, rLeg));
+    }
 }
