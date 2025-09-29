@@ -8,7 +8,10 @@ public class Main
 {
     public static void main( String[] args ) {
         Game game = new Game(new SelectWord(), new Hangman(), new InputCheck());
-        game.play();
+        //game.play();
+
+        SelectWord selectWord = new SelectWord();
+        selectWord.select();
 
     }
 }

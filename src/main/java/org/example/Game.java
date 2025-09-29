@@ -1,21 +1,18 @@
 package org.example;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class Game {
     SelectWord selectWord;
-    Hangman hangman;
     InputCheck inputCheck;
     String status;
 
-
-    public Game(SelectWord selectWord, Hangman hangman, InputCheck inputCheck) {
+    public Game(SelectWord selectWord, InputCheck inputCheck) {
         this.selectWord = selectWord;
-        this.hangman = hangman;
         this.inputCheck = inputCheck;
     }
 
-    private Boolean start() {
+    private void start() {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Для начала игры введите: [s]tart \n" +
@@ -24,18 +21,26 @@ public class Game {
 
         while (true) {
             if (status.equals("s") || status.equals("start")) {
-                return true;
+                play();
             } else if (status.equals("q") || status.equals("quit")) {
                 break;
             }
         }
-        return false;
+    }
+    private void endGame (String message) {
+        System.out.println(message);
     }
 
     public void play () {
-        while (start()) {
-            hangman.initialize();
+            Hangman hangman = new Hangman();
+            Queue<String> hangmanStatus = hangman.initialize();
+            Map<Character, ArrayList<Integer>> guessWordCharacters = selectWord.select();
+            Set<Character> userInput = new HashSet<>();
+            while () {
+                Character inputLetter = inputCheck.inputLetter();
+                userInput.add(inputLetter);
 
+                }
         }
     }
 }

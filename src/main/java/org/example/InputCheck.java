@@ -1,9 +1,12 @@
 package org.example;
 
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class InputCheck {
-    Scanner scanner = new Scanner(System.in);
+
+    private Set<Character> input = new HashSet<>();
 
     private Boolean checkValidLetter (String input ) {
         if (input.length() != 1 || !(Character.isLetter(input.charAt(0)))) {
@@ -14,6 +17,7 @@ public class InputCheck {
     }
 
     public Character inputLetter () {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Введите букву ");
         String character = scanner.next();
 
@@ -23,5 +27,11 @@ public class InputCheck {
         return Character.toUpperCase(character.charAt(0));
     }
 
+    /*public void startInput() {
+        while (true) {
+            if()
+            input.add(inputLetter());
+        }
+    }*/
 
 }
