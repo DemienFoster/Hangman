@@ -3,21 +3,14 @@ package org.example;
 import java.util.*;
 
 public class Game {
-    SelectWord selectWord;
-    InputCheck inputCheck;
-    String status;
 
-    public Game(SelectWord selectWord, InputCheck inputCheck) {
-        this.selectWord = selectWord;
-        this.inputCheck = inputCheck;
-    }
-
-    private void start() {
+   private void newGameOrQuit() {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Для начала игры введите: [s]tart \n" +
                            "Для выхода: [q]uit ");
-        status = scanner.next();
+
+        String status = scanner.next();
 
         while (true) {
             if (status.equals("s") || status.equals("start")) {
@@ -27,20 +20,48 @@ public class Game {
             }
         }
     }
-    private void endGame (String message) {
-        System.out.println(message);
+
+    private void endGame (String endGameMessage ) {
+        System.out.println(endGameMessage);
+    }
+    private Boolean gameStatusWin(String maskedWord) {
+        return !maskedWord.contains("_");
     }
 
     public void play () {
-            Hangman hangman = new Hangman();
-            Queue<String> hangmanStatus = hangman.initialize();
-            Map<Character, ArrayList<Integer>> guessWordCharacters = selectWord.select();
-            Set<Character> userInput = new HashSet<>();
-            while () {
-                Character inputLetter = inputCheck.inputLetter();
-                userInput.add(inputLetter);
+        Word word = new Word();
+        InputCheck inputCheck = new InputCheck();
+        Hangman hangman = new Hangman();
 
+        Queue<String> hangmanStatus = hangman.initialize();
+        String guessedWord = word.selectWord();
+        Set<Character> inputLetters = new HashSet<>();
+
+        while (true) {
+            Character inputLetter = inputCheck.inputLetter();
+            if (inputLetters.contains(inputLetter)) {
+                System.out.println("You already input this letter, try another");
+                continue;
+            }
+            inputLetters.add(inputLetter);
+
+            if (guessedWord.contains(String.valueOf(inputLetter))) {
+                String maskedWord = word.printMaskedWord(guessedWord, inputLetters);
+                if(gameStatusWin(maskedWord)) {
+                    endGame("Поздравляем!!! Вы выиграли");
+                    newGameOrQuit();
                 }
+            } else {
+                System.out.println(hangmanStatus.remove());
+                if (hangmanStatus.isEmpty()) {
+                    endGame("Вы проиграли ((((");
+                    newGameOrQuit();
+                }
+            }
         }
+
+
     }
 }
+
+

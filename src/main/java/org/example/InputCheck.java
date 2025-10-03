@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class InputCheck {
 
-    private Set<Character> input = new HashSet<>();
+
 
     private Boolean checkValidLetter (String input ) {
         if (input.length() != 1 || !(Character.isLetter(input.charAt(0)))) {
