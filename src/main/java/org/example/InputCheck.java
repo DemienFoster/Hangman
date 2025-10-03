@@ -1,28 +1,26 @@
 package org.example;
 
-import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Set;
 
 public class InputCheck {
 
 
 
-    private Boolean checkValidLetter (String input ) {
-        if (input.length() != 1 || !(Character.isLetter(input.charAt(0)))) {
-            System.out.println("Введите букву ");
-            return false;
+    private Boolean validLetter(String input ) {
+        if (input.length() == 1 && Character.isLetter(input.charAt(0))) {
+            return true;
         }
-        return true;
+        return false;
     }
 
     public Character inputLetter () {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите букву ");
-        String character = scanner.next();
+        String character = scanner.nextLine().trim();
 
-        while (!checkValidLetter(character)) {
-            character = scanner.next();
+        while (!validLetter(character)) {
+            System.out.println("Вы ввели строку или некорректный символ! Введите букву ");
+            character = scanner.nextLine().trim();
         }
         return Character.toUpperCase(character.charAt(0));
     }
