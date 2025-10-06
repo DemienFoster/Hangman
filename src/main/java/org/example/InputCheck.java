@@ -4,13 +4,8 @@ import java.util.Scanner;
 
 public class InputCheck {
 
-
-
     private Boolean validLetter(String input ) {
-        if (input.length() == 1 && Character.isLetter(input.charAt(0))) {
-            return true;
-        }
-        return false;
+        return input.length() == 1 && Character.isLetter(input.charAt(0));
     }
 
     public Character inputLetter () {
@@ -24,12 +19,4 @@ public class InputCheck {
         }
         return Character.toUpperCase(character.charAt(0));
     }
-
-    /*public void startInput() {
-        while (true) {
-            if()
-            input.add(inputLetter());
-        }
-    }*/
-
 }

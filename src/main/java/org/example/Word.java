@@ -3,17 +3,8 @@ package org.example;
 import java.util.*;
 
 public class Word {
-    private final ArrayList<String> words = new ArrayList<>(List.of("piece"));
-    Map<Character, ArrayList<Integer>> characterIndexesInWord = new HashMap<>();
-
-    String maskedWord;
-
-    public String selectWord () {
-        String word = words.get(new Random().nextInt(words.size())).toUpperCase();
-        maskedWord = String.valueOf('_').repeat(word.length());
-        setCharacterIndexesInWord(word);
-        return word;
-    }
+    private final ArrayList<String> words = new ArrayList<>(List.of("Piece"));
+    private final Map<Character, ArrayList<Integer>> characterIndexesInWord = new HashMap<>();
 
     private void setCharacterIndexesInWord( String word) {
         for (int i = 0; i < word.length(); i++) {
@@ -22,22 +13,25 @@ public class Word {
         System.out.println(characterIndexesInWord);
     }
 
-    public Boolean letterPresentInWord (Character inputLetter) {
-        return characterIndexesInWord.containsKey(inputLetter);
+    public String selectWord () {
+        String word = words.get(new Random().nextInt(words.size())).toUpperCase();
+        setCharacterIndexesInWord(word);
+        return word;
     }
 
-    public String printMaskedWord(String word, Set<Character> set) {
+    public String printMaskedWord(String word, Set<Character> setOfLetters) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < word.length(); i++) {
-            if(set.contains(word.charAt(i))) {
+            if(setOfLetters.contains(word.charAt(i))) {
                 stringBuilder.append(word.charAt(i));
             } else
                 stringBuilder.append('_');
         }
+        String outputStr = stringBuilder.toString();
         System.out.println("----------------------");
-        System.out.println(stringBuilder.toString());
+        System.out.println("\t\t" + outputStr);
         System.out.println("----------------------");
-        return stringBuilder.toString();
+        return outputStr;
     }
 
 
