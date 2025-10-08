@@ -12,6 +12,6 @@ public class Main
 
         FileDictionary fd = new FileDictionary();
         //fd.CheckErrorStringsFromFile("Dictionary.txt");
-        fd.countStringsInFile();
+        fd.CheckErrorStringsFromFile("Dictionary.txt");
     }
 }
