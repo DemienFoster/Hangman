@@ -5,6 +5,30 @@ import java.util.regex.Pattern;
 
 public class FileDictionary {
 
+    /*
+     * Тут есть два метода и константа, которые я использовал для валидации файла словаря,
+     * которые в программе не используются, но будут полезны в дальнейшем, поэтому решил пока их не удалять:
+     *
+     * final Pattern VALID_PATTERN
+     *
+     * isLineValid()
+     * CheckErrorStringsFromFile()
+     *
+     * В чем суть. Файл словаря я скачал из сети. Когда начал просматривать глазами
+     * оказалось, что там есть не валидные строки.
+     *
+     * В итоге был реализован функционал, который удалял эти строки:
+     * - строки в которых есть символы отличные от букв
+     * - убирает слова, в которых меньше
+     * - и строки в которых больше одного слова
+     *
+     * На существительные в именительном падеже их конечно не проверить - в файле около 60 000 строк, но
+     * то что сделано, считаю хорошим функционалом и в дальнейшем его можно будет прикрутить, если пользователь
+     * захочет добавлять свой словарь вместо моего. Удалять пока не буду.
+     *
+     *
+     * */
+
     private static final Pattern VALID_PATTERN = Pattern.compile("[А-Яа-яЁё]+");
 
     private Boolean isLineValid (String line) {
@@ -13,7 +37,7 @@ public class FileDictionary {
         }
         String trimmedLine = line.trim();
         String[] words = trimmedLine.split("\\s+");
-        if(words.length != 1) {
+        if(words.length != 1 || words[0].length() < 5) {
             return false;
         }
         return VALID_PATTERN.matcher(trimmedLine).matches();
@@ -25,7 +49,7 @@ public class FileDictionary {
         int validLinesCount = 0;
 
         try (BufferedReader reader = new BufferedReader(new FileReader(dictionary));
-            BufferedWriter writer = new BufferedWriter(new FileWriter("out.txt"))) {
+             BufferedWriter writer = new BufferedWriter(new FileWriter("out.txt"))) {
 
             String line;
             while ((line = reader.readLine()) != null) {
