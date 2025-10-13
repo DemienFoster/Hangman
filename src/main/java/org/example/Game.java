@@ -1,33 +1,36 @@
 package org.example;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Queue;
+import java.util.Scanner;
+import java.util.Set;
 
 public class Game {
 
-    private void endGame (String endGameMessage ) {
+    private void endGame(String endGameMessage) {
         System.out.println(endGameMessage);
     }
 
     private Boolean gameStatusWin(String maskedWord) {
-        return !maskedWord.contains("_");
+        return !maskedWord.contains(Word.MASKED_SYMBOL.toString());
     }
 
     private Boolean newGame() {
         while (true) {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Для начала игры введите: [s]tart \n" +
-                    "Для выхода: [q]uit ");
-            String status = scanner.next();
+            System.out.println("Для начала игры введите: [с]тарт \n" +
+                    "Для выхода: [в]ыход ");
+            String status = scanner.next().toLowerCase();
 
-            if (status.equals("s") || status.equals("start")) {
+            if (status.equals("с") || status.equals("старт")) {
                 return true;
-            } else if (status.equals("q") || status.equals("quit")) {
+            } else if (status.equals("в") || status.equals("выход")) {
                 return false;
             }
         }
     }
 
-    private void gamePlay () {
+    private void gamePlay() {
         Word word = new Word();
         InputCheck inputCheck = new InputCheck();
         Hangman hangman = new Hangman();
@@ -46,20 +49,21 @@ public class Game {
             String maskedWord = word.printMaskedWord(guessedWord, inputLetters);
 
             if (guessedWord.contains(String.valueOf(inputLetter))) {
-                if(gameStatusWin(maskedWord)) {
+                if (gameStatusWin(maskedWord)) {
                     endGame("Поздравляем!!! Вы выиграли\n\n");
                     break;
                 }
             } else {
                 System.out.println(hangmanStatus.remove());
                 if (hangmanStatus.isEmpty()) {
-                    endGame("Вы проиграли ((((\n\n");
+                    endGame("Вы проиграли ((((\n\n" + "Загаданное слово: " + guessedWord);
                     break;
                 }
             }
         }
     }
-    public void start () {
+
+    public void start() {
         while (newGame()) {
             gamePlay();
         }

@@ -46,7 +46,8 @@ public class Hangman {
             "/ | \\     |\n" +
             " / \\      |\n" +
             "         _|_";
-    public Queue <String> initialize() {
+
+    public Queue<String> initialize() {
         return new LinkedList<>(List.of(tree, head, body, lHand, rHand, lLeg, rLeg));
     }
 }

@@ -1,14 +1,16 @@
 package org.example;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class InputCheck {
+    private static final Pattern VALID_PATTERN = Pattern.compile("[А-Яа-яЁё]");
 
-    private Boolean validLetter(String input ) {
-        return input.length() == 1 && Character.isLetter(input.charAt(0));
+    private Boolean validLetter(String input) {
+        return input.length() == 1 && VALID_PATTERN.matcher(input).matches();
     }
 
-    public Character inputLetter () {
+    public Character inputLetter() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите букву ");
         String character = scanner.nextLine().trim();
