@@ -15,7 +15,10 @@ public class Hangman {
 
     private final String head = " ---------|\n" +
             "  |       |\n" +
-            "  O       |\n";
+            "  O       |\n" +
+            "          |\n" +
+            "          |\n" +
+            "         _|_";;
     private final String body = " ---------|\n" +
             "  |       |\n" +
             "  O       |\n" +
